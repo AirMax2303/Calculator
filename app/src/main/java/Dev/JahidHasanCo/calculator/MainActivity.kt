@@ -89,25 +89,47 @@ class MainActivity : AppCompatActivity() {
             input2.text = addToInput2Text(".")
         }
         button_division.setOnClickListener {
-            input.text = addToInputText("÷") // ALT + 0247
-            output.text = input2.text
-            input2.text = ""
+            if (input.text.toString() == "") {
+                input.text = addToInputText("÷") // ALT + 0247
+                output.text = input2.text
+                input2.text = ""
+            } else if (input.text.toString() != "÷") {
+                input.text = ""
+                input.text = addToInputText("÷") // ALT + 0247
+            }
+
         }
         button_multiply.setOnClickListener {
-            input.text = addToInputText("×") // ALT + 0215
-            output.text = input2.text
-            input2.text = ""
+            if (input.text.toString() == "") {
+                input.text = addToInputText("×") // ALT + 0215
+                output.text = input2.text
+                input2.text = ""
+            } else if (input.text.toString() != "×") {
+                input.text = ""
+                input.text = addToInputText("×") // ALT + 0215
+            }
         }
 
         button_subtraction.setOnClickListener {
-            input.text = addToInputText("-")
-            output.text = input2.text
-            input2.text = ""
+            if (input.text.toString() == "") {
+                input.text = addToInputText("-")
+                output.text = input2.text
+                input2.text = ""
+            } else if (input.text.toString() != "-") {
+                input.text = ""
+                input.text = addToInputText("-")
+            }
+
         }
         button_addition.setOnClickListener {
-            input.text = addToInputText("+")
-            output.text = input2.text
-            input2.text = ""
+            if (input.text.toString() == "") {
+                input.text = addToInputText("+")
+                output.text = input2.text
+                input2.text = ""
+            } else if (input.text.toString() != "+") {
+                input.text = ""
+                input.text = addToInputText("+")
+            }
         }
 
         button_equals.setOnClickListener {
@@ -151,8 +173,10 @@ class MainActivity : AppCompatActivity() {
                 output.setTextColor(ContextCompat.getColor(this, R.color.blue))
             } else {
                 // Show Result
-                output.text = DecimalFormat("0.######").format(result).toString()
-                output.setTextColor(ContextCompat.getColor(this, R.color.green))
+                input2.text = DecimalFormat("0.######").format(result).toString()
+                input2.setTextColor(ContextCompat.getColor(this, R.color.green))
+                input.text = ""
+                output.text = ""
             }
         } catch (e: Exception) {
             // Show Error Message
